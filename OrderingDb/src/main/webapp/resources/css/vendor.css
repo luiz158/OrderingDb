@@ -1,0 +1,41 @@
+.newVendorBanner
+{
+	padding: 30%;
+	font-size:xx-large; 
+}
+
+.newVendorBody
+{
+	margin-top: 5%;
+	margin-left: 10%;
+}
+
+.venCol2
+{
+	padding-right: 40px;
+}
+
+.btnCls
+{
+	margin-top: 5%;
+}
+
+.createBtn,.canBtn
+{
+	width: 18%;
+	margin-right: 2%;
+	font-size: 12px;
+}
+
+.createBtn
+{
+	margin-left: 20%;	
+}
+
+.createBtn span,.canBtn span
+{
+	font-size: 15px;
+	font-family: calibri;
+	font-variant: normal;
+	color: black;
+}

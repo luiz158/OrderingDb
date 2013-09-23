@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputScript library="js" name="JQuery.js" />
+	<h:outputStylesheet library="css" name="login.css" />
+	<f:metadata>
+		<f:event listener="#{login.getUsernameList}" type="preRenderView" />
+	</f:metadata>
+</h:head>
+<h:body styleClass="loginBody">
+	<h:panelGroup id="logo">
+		<h:graphicImage url="/resources/images/logo1.png" style="height:100px;width:500px"/>
+	</h:panelGroup>
+	<f:view>
+	<h:form id="jsfexample" prependId="false">
+		<p:panelGrid columns="2" id="inputGrid">
+			<p:selectOneListbox id="usernames" styleClass="selectOne" value="#{login.username}">
+				<f:selectItems itemValue="#{login.usernames}"
+					value="#{login.usernames}" />
+			</p:selectOneListbox>
+
+			<p:panelGrid id="inputArea" columns="1"
+				style="border:none !important">
+				<h:panelGroup id="messageArea">
+					<p:messages layout="table"/>
+				</h:panelGroup>
+				<h:outputLabel value="USERNAME" styleClass="labelClass" />
+				<h:inputText id="username" required="true"
+					requiredMessage="Please select user name"/>
+				<p:commandButton id="loginButton" action="#{order.displayOrders}" value="Login" update="messageArea"/>
+			</p:panelGrid>
+		</p:panelGrid>
+	</h:form>
+	</f:view>
+</h:body>
+<SCRIPT type="text/javascript">
+	$(document).ready(function() {
+		$("#usernames").click(function() {
+			$("#username").val($("option:selected", this).text());
+		});
+	});
+</SCRIPT>
+</html>

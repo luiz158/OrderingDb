@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/MainTemplate.xhtml">
+	<ui:define name="body">
+	<h:outputStylesheet library="css" name="vendor.css"/>
+		<h:form id="newVendor" prependId="false">
+		<p:panel>
+			<p:outputLabel value="Create New Vendor" styleClass="newVendorBanner"/>
+		</p:panel>
+		<p:dialog appendToBody="true" widgetVar="messageBlock" id="messBlock" modal="true" showEffect="explode">
+			<p:outputLabel value="New Vendor Created. Want to create more?"/>
+			<p:panel>
+				<p:commandButton value="Yes"/>
+				<p:commandButton value="No" onclick="messageBlock.hide()"/>
+			</p:panel>
+		</p:dialog>
+			<h:panelGrid columns="4" styleClass="newVendorBody" columnClasses="venCol1,venCol2,venCol3,venCol4">
+				<p:outputLabel value="Vendor Name" />
+				<p:inputText value="#{vendor.newVendor.vendor_Name}" maxlength="35"/>
+				<p:outputLabel value="Address" />
+				<p:inputTextarea value="#{vendor.newVendor.address}" maxlength="75"/>
+				<p:outputLabel value="City" />
+				<p:inputText value="#{vendor.newVendor.city}" maxlength="30"/>
+				<p:outputLabel value="State" />
+				<p:inputText value="#{vendor.newVendor.state}" maxlength="20"/>
+				<p:outputLabel value="Zip" />
+				<p:inputMask mask="99999" value="#{vendor.newVendor.zip}" />
+				<p:outputLabel value="Telephone" />
+				<p:inputMask mask="9999999999" value="#{vendor.newVendor.contactNumber}" />
+				<p:outputLabel value="Fax" />
+				<p:inputText value="#{vendor.newVendor.fax}" maxlength="30"/>
+				<p:outputLabel value="Contact Person" />
+				<p:inputText value="#{vendor.newVendor.contactName}" maxlength="40"/>
+				<p:outputLabel value="Email" />
+				<p:inputText value="#{vendor.newVendor.email}" maxlength="60" validatorMessage="email pattern not match">
+					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+				</p:inputText>
+				<p:outputLabel value="Web" />
+				<p:inputText value="#{vendor.newVendor.webLink}" validatorMessage="Weblink pattern not match"/>
+			</h:panelGrid>
+			<p:panel styleClass="btnCls">
+				<p:commandButton value="Create Vendor" styleClass="createBtn" actionListener="#{vendor.createNewVendor()}"/>
+				<p:commandButton value="Cancel" styleClass="canBtn"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

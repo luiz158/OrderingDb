@@ -1,0 +1,125 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/MainTemplate.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false" id="vendorListForm">
+		<h:panelGrid>
+			<p:dataTable value="#{vendor.vendors}" var="ven"
+				filteredValue="#{vendor.filterVendor}"
+				emptyMessage="No Vendors Found" id="vendorList" editable="true">
+				
+				<p:ajax event="rowEdit" listener="#{vendor.onEdit}"/>
+
+				<p:column filterBy="#{ven.vendor_Id}" filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="Vendor Id" />
+					</f:facet>
+					<h:outputText value="#{ven.vendor_Id}" />
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{ven.vendor_Name}" headerText="Vendor Name">
+					<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ven.vendor_Name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ven.vendor_Name}" />
+							</f:facet>
+						</p:cellEditor>
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{ven.address}" headerText="Address">
+					<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ven.address}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ven.address}" />
+							</f:facet>
+						</p:cellEditor>
+				</p:column>
+				
+				<p:column filterMatchMode="contains" filterBy="#{ven.city}" headerText="City">
+					<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ven.city}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ven.city}" />
+							</f:facet>
+						</p:cellEditor>
+				</p:column>
+				
+				<p:column filterMatchMode="contains" filterBy="#{ven.zip}" headerText="Zip Code">
+					<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ven.zip}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ven.zip}" />
+							</f:facet>
+						</p:cellEditor>
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{ven.contactName}" headerText="Contact Name">
+					<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ven.contactName}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ven.contactName}" />
+							</f:facet>
+						</p:cellEditor>
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{ven.email}" headerText="Email">
+					<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ven.email}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ven.email}" />
+							</f:facet>
+						</p:cellEditor>
+				</p:column>
+				
+				<p:column filterMatchMode="contains" filterBy="#{ven.fax}" headerText="Fax">
+					<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{ven.fax}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ven.fax}" />
+							</f:facet>
+						</p:cellEditor>
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{ven.webLink}" headerText="Web link">
+					<p:cellEditor>
+							<f:facet name="output">
+								<p:commandLink value="#{ven.webLink}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{ven.webLink}" />
+							</f:facet>
+						</p:cellEditor>
+				</p:column>
+				
+				<p:column style="width:6%" headerText="Edit?">
+						<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+			
+			<p:panel>
+				<h:commandLink value="Export to Excel">
+					<p:dataExporter target="vendorList" type="xls" fileName="ven" />
+				</h:commandLink>
+			</p:panel>
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="HibernateTest">
+	<non-jta-data-source>java:jboss/datasources/orderingds</non-jta-data-source>
+	<class>com.entities.Account</class>
+	<class>com.entities.GrantShare</class>
+	<class>com.entities.GrantSharePK</class>
+	<class>com.entities.Item</class>
+	<class>com.entities.Lab</class>
+	<class>com.entities.ListOfItem</class>
+	<class>com.entities.ListOfItemPK</class>
+	<class>com.entities.OrderRequest</class>
+	<class>com.entities.Order</class>
+	<class>com.entities.UserRole</class>
+	<class>com.entities.User</class>
+	<class>com.entities.Vendor</class>
+   <properties>
+       <!--property name="hibernate.archive.autodetection" value="class, hbm"/>
+       <property name="hibernate.show_sql" value="false"/>
+       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+       <property name="hibernate.connection.password" value="password"/>
+       <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1/OrderingDB"/>
+       <property name="hibernate.connection.username" value="root"/>
+       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+       <property name="hibernate.c3p0.min_size" value="5"/>
+       <property name="hibernate.c3p0.max_size" value="20"/>
+       <property name="hibernate.c3p0.timeout" value="300"/>
+       <property name="hibernate.c3p0.max_statements" value="50"/>
+       <property name="hibernate.c3p0.idle_test_period" value="3000"/-->
+   </properties>
+ </persistence-unit>
+</persistence>

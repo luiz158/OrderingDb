@@ -1,0 +1,186 @@
+.loginBody {
+	overflow: hidden;
+	width: 101.54%;
+	height: 104%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-family: comic sans ms !important;
+	background-image: url("./images/bg_blue1.png");
+}
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background: #FFFFCC;
+	width: 110% !important;
+}
+
+.labelClass
+{
+	font-size: 15px;
+	font-family: calibri;
+	font-weight: bold;
+}
+
+#orderList
+{
+	overflow: auto;
+	height: 545px !important;
+	width: auto;
+	vertical-align: top;
+}
+
+
+#orderList td{
+	
+}
+
+#userdetails {
+	vertical-align: top;
+}
+
+.orderButton {
+	width: 170px;
+	height: 30px;
+	border: none !important;
+}
+
+.orderButton span {
+	font-size: 15px;
+	font-family: calibri;
+}
+
+.orderDtls,.mainDtls {
+	width: 100%;
+}
+	
+	
+.bodyClass
+{
+	width: 100%;
+	vertical-align: top !important;
+	height: 500px !important;	
+}
+
+.receivedDtls
+{
+	font: normal 15px small calibri;
+	color: black;
+}
+
+.navClass {
+	height: auto !important;
+	width: 200px;
+	vertical-align: top;
+	border: 1px solid black;
+	background-color: white;
+}
+
+.navClass a {
+	text-decoration: none;
+	color: black;
+	font: normal 15px small;
+	font-family: calibri;
+}
+
+.subMenuItems > h3 > a
+{
+	height: 18px;
+	font-size: 18px !important;
+	color: black !important;
+}
+.subMenuItems, .subMenuItems:HOVER
+{
+	width: 200px !important;
+	border: none !important;
+}
+
+.subMenuItems div
+{
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: none !important;
+}
+
+.menuItemCls span
+{
+	font-size: 15px !important;
+}
+
+.userBanner
+{
+	color: black;
+	font-size: 20px !important;
+	font-family: calibri;
+	font-weight: bold !important;
+}
+.logoutLabel
+{
+	float:right;
+	color: black;
+	font: 15px !important;
+	font-family: calibri;
+	font-weight: bold !important;
+}
+
+.accountsDlgClass
+{
+	height: 210px !important;
+	width: 450px !important;
+}
+
+.accountLabel
+{
+	font-family: calibri !important;
+	font-size: 15px !important;
+	font-weight: bold !important;
+}
+
+.accountText
+{
+	font-family: calibri !important;
+	font-size: 15px !important;
+	font-weight: normal !important;
+}
+.accountsTblClass
+{
+	height: 90px;
+}
+.accountLabelBtn
+{
+	padding-left: 40%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #EAF8FF;
+	margin: 5px;
+}
+
+.accountButton
+{
+	font-family: calibri !important;
+	font-size: 15px !important;
+	font-weight: bold !important;
+}
+
+.reqCls > div:FIRST-CHILD 
+{
+	background-color: #E42217 !important;
+}
+
+.ordCls > div:FIRST-CHILD
+{
+	background-color: #E6B800 !important;
+}
+
+.recCls > div:FIRST-CHILD
+{
+	background-color: #4E9258 !important;
+}
+
+
+.ordCls, .recCls, .reqCls
+{
+	padding: 0px;
+	margin: 0px;	
+}

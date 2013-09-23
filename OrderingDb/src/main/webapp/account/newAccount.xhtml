@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/MainTemplate.xhtml">
+
+	<ui:define name="body">
+	<h:outputStylesheet library="css" name="accounts.css"/>
+		<h:form prependId="false" id="newAccountForm">
+			<p:panel>
+				<p:outputLabel value="Enter New Account Details"/>
+			</p:panel>
+			<p:messages style="color: red" id="messageArea"/>
+				<h:panelGrid columns="2" styleClass="accountFormCls" id="accountFormCls" columnClasses="firstClm,secondClm">
+					<p:outputLabel value="Account Name"/>
+					<p:inputText required="true" requiredMessage="Please enter Account Name. It is mandatory" styleClass="acctNameCls" value="#{account.newAccount.accountName}"/>
+					<p:outputLabel value="Account Description" styleClass="acctDescLbl"/>
+					<p:inputTextarea value="#{account.newAccount.accountDescription}"/>
+				</h:panelGrid>
+			<p:panel>
+				<p:commandButton value="Create" action="#{account.createAnAccount()}" styleClass="crtBtnCls" update="@form"/>
+				<p:commandButton value="Reset" type="reset" styleClass="resetBtnCls"/>
+			</p:panel>
+			<p:confirmDialog header="Account Created" message="Do you wish to create another account?" widgetVar="confirmDialog">
+				<p:commandButton type="reset" value="Yes" onclick="confirmDialog.hide()"/>
+				<p:commandButton action="#{account.acquireListofAccounts}" value="No, Take me to Accounts Page"/>
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/MainTemplate.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false" id="userdorListForm">
+			<h:panelGrid>
+				<p:dataTable value="#{user.users}" var="use"
+					filteredValue="#{user.filteredUsers}" emptyMessage="No Users Found"
+					id="userList" editable="true">
+
+					<p:ajax event="rowEdit" listener="#{user.onEdit}" />
+
+					<p:column filterBy="#{use.userName}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="User Name" />
+						</f:facet>
+						<h:outputText value="#{use.userName}" />
+					</p:column>
+
+					<p:column filterMatchMode="contains" filterBy="#{use.lab}" headerText="Lab">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{use.lab}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{use.lab}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column filterMatchMode="contains" filterBy="#{use.userStatus}" headerText="User Status">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{use.userStatus}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{use.userStatus}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column style="width:6%" headerText="Edit?">
+						<p:rowEditor />
+					</p:column>
+
+				</p:dataTable>
+
+				<p:panel>
+					<h:commandLink value="Export to Excel">
+						<p:dataExporter target="userList" type="xls" fileName="user" />
+					</h:commandLink>
+				</p:panel>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

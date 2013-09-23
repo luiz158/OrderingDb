@@ -1,0 +1,37 @@
+.headingCls
+{
+	font-size: 20px; 
+}
+
+.headinglbl
+{
+	margin: 40% !important;
+	color: black;
+}
+.formCls
+{
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-left: 30%;
+}
+
+.formCls label
+{
+	font: 10px;
+	color: black;
+}
+.creatBtnClass
+{
+	margin-left: 28% !important;
+	width: 150px;
+}
+.creatBtnClass span,.cnlCBtnClass span
+{
+	font-size: 15px;
+	color: black;
+}
+.cnlCBtnClass
+{
+	margin-left: 5% !important;
+	width: 150px;
+}

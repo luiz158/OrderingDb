@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:form id="navigation" prependId="false">
+		<p:panelMenu id="menuPanel">
+			<p:submenu label="Orders" styleClass="subMenuItems">
+				<p:menuitem value="List of Order Requests" styleClass="menuItemCls"
+					action="#{order.displayOrders}" />
+				<p:menuitem value="New Order Request" styleClass="menuItemCls"
+					action="#{order.goToCreateOrder}" />
+				<p:menuitem value="List Order Requests" styleClass="menuItemCls"
+					outcome="/Order/searchOrder.xhtml?faces-redirect=true" />
+				<p:menuitem value="List of Orders" styleClass="menuItemCls" />
+			</p:submenu>
+			<p:submenu label="Vendors" styleClass="subMenuItems">
+				<p:menuitem value="List of Vendor" styleClass="menuItemCls"
+					action="#{vendor.displayVendors}" />
+				<p:menuitem value="New Vendor" styleClass="menuItemCls"
+					action="#{vendor.goToCreateVendor}" />
+			</p:submenu>
+			<p:submenu label="Items" styleClass="subMenuItems">
+				<p:menuitem value="List of Items" styleClass="menuItemCls"
+					action="#{item.ListAllItems}" />
+			</p:submenu>
+			<p:submenu label="Admin" styleClass="subMenuItems">
+				<p:menuitem value="Add User" styleClass="menuItemCls"
+					action="#{user.addUser}" />
+				<p:menuitem value="List of User" styleClass="menuItemCls"
+					action="#{user.listAllUsers}" />
+			</p:submenu>
+			<p:submenu label="Accounts" styleClass="subMenuItems">
+				<p:menuitem value="Add Account" outcome="/account/newAccount.xhtml"/>
+				<p:menuitem value="List Account"
+					action="#{account.acquireListofAccounts}" />
+			</p:submenu>
+		</p:panelMenu>
+	</h:form>
+</ui:composition>

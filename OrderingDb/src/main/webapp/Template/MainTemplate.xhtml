@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="mainTemplate.css" />
+	<h:outputScript library="js" name="JQuery.js" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<ui:insert name="Header">
+			<ui:include src="orderingHeader.xhtml" />
+		</ui:insert>
+		<ui:insert name="breadcrumb">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+
+
+		<h:panelGrid columns="3" columnClasses="navClass,bodyClass">
+			<ui:insert name="navigation">
+				<ui:include src="/ADMIN/navigation.xhtml" />
+			</ui:insert>
+			<ui:insert name="body" />
+		</h:panelGrid>
+
+
+		<ui:insert name="footer">
+			<ui:include src="footer.xhtml" />
+		</ui:insert>
+	</ui:composition>
+</h:body>
+</html>

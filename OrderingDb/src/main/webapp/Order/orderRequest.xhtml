@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form id="orders" prependId="false">
+	<p:growl id="growl" showDetail="true" sticky="true" life="1"/>
+		<h:panelGroup id="orderList">
+			<h:messages />
+			<p:dataGrid var="orders" value="#{order.orders}" columns="1" emptyMessage="No Orders Found" paginator="true" rows="3">
+				<p:panel header="Order Number: #{orders.requestId}" styleClass="#{orders.status=='requested'?'reqCls':(orders.status=='received'?'recCls':'ordCls')}" id="order_#{orders.requestId}">
+					<h:panelGrid columns="2" styleClass="mainDtls">
+						<h:panelGrid columns="3" styleClass="orderDtls">
+							<h:panelGrid columns="2">
+								<h:outputLabel value="Id" styleClass="labelClass" />
+								<h:outputText value="#{orders.requestId}" />
+								<h:outputLabel value="Catalog #" styleClass="labelClass" />
+								<h:outputText value="#{orders.cat_No}" />
+								<h:outputLabel value="Cost" styleClass="labelClass" />
+								<h:outputText value="#{orders.cost}" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="2">
+								<h:outputLabel value="Request Date" styleClass="labelClass" />
+								<h:outputText value="#{orders.request_Date}" />
+								<h:outputLabel value="Vendor" styleClass="labelClass" />
+								<h:outputText value="#{orders.vendor.vendor_Name}" />
+								<h:outputLabel value="Quantity" styleClass="labelClass" />
+								<h:outputText value="#{orders.quantity}" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="2">
+								<h:outputLabel value="Size" styleClass="labelClass" />
+								<h:outputText value="#{orders.size}" />
+								<h:outputLabel value="Line Price" styleClass="labelClass" />
+								<h:outputText value="#{orders.linePrice}" />
+								<h:outputLabel value="Ordered By" styleClass="labelClass" />
+								<h:outputText value="#{orders.received_By}" />
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<h:panelGrid>
+							<p:commandButton value="Update" styleClass="orderButton" action="#{order.editOrder}" update="@form">
+								<f:setPropertyActionListener target="#{order.updateOrder.requestId}" value="#{orders.requestId}"/>
+								<f:setPropertyActionListener target="#{order.updateOrder.received_By}" value="#{orders.received_By}"/>
+								<f:setPropertyActionListener target="#{order.updateOrder.received_Date}" value="#{orders.received_Date}"/>
+								<f:setPropertyActionListener target="#{order.updateOrder.location}" value="#{orders.location}"/>
+							</p:commandButton>
+							<p:commandButton value="Delete" styleClass="orderButton"
+								actionListener="#{order.deleteOrder}" update="@form">
+								<f:param name="selectedOrder" value="#{orders.requestId}" />
+							</p:commandButton>
+							<p:commandButton value="Account Details" styleClass="orderButton" onclick="accounts.show()"/>
+						</h:panelGrid>
+					</h:panelGrid>
+
+					<h:panelGroup layout="block" styleClass="receivedDtls">
+						<h:outputLabel value="Received By" />
+						<p:inputText value="#{orders.received_By}" />
+						<h:outputLabel value="Received Date" />
+						<p:calendar value="#{orders.received_Date}" />
+						<h:outputLabel value="Location" />
+						<p:inputText value="#{orders.location}" />
+						<h:outputLabel value="Lot Number" />
+						<p:inputText/>
+					</h:panelGroup>
+					
+				</p:panel>
+			</p:dataGrid>
+			
+			<p:dialog widgetVar="accounts" id="accountsDialog" modal="true" header="Account Details" styleClass="accountsDlgClass"
+			resizable="false" appendToBody="true">
+			<h:messages />
+				<p:panelGrid columns="4" styleClass="accountsTblClass">
+					<p:outputLabel value="Account Name" styleClass="accountLabel"/>
+					<p:outputLabel value="Serio_Laney lab" styleClass="accountText"/> 
+					<p:outputLabel value="Percentage Share" styleClass="accountLabel"/>  
+					<p:outputLabel value="50%" styleClass="accountText"/>
+					<p:outputLabel value="Account Name" styleClass="accountLabel"/>
+					<p:outputLabel value="Account 2" styleClass="accountText"/> 
+					<p:outputLabel value="Percentage Share" styleClass="accountLabel"/>  
+					<p:outputLabel value="50%" styleClass="accountText"/>
+				</p:panelGrid>
+				<h:panelGroup layout="block" styleClass="accountLabelBtn">
+					<p:button onclick="accounts.hide()" value="OK" styleClass="accountButton"/>
+				</h:panelGroup>				
+			</p:dialog>
+		</h:panelGroup>
+
+	</h:form>
+	
+	<SCRIPT type="text/javascript">
+	$(document).ready(function() {
+	
+	});
+</SCRIPT>
+</ui:composition>

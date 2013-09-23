@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/MainTemplate.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false" id="accountsListForm">
+			<h:panelGrid>
+				<p:dataTable value="#{account.accounts}" var="acct"
+					filteredValue="#{account.filteredAccts}" emptyMessage="No Accounts Found"
+					id="acctList" editable="true">
+
+					<p:ajax event="rowEdit" listener="#{account.onEdit}" />
+
+					<p:column filterBy="#{acct.accountId}" filterMatchMode="contains">
+						<f:facet name="header">
+							<h:outputText value="Account Id" />
+						</f:facet>
+						<h:outputText value="#{acct.accountId}" />
+					</p:column>
+
+					<p:column filterMatchMode="contains" filterBy="#{acct.accountName}" headerText="Account Name">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{acct.accountName}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{acct.accountName}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column filterMatchMode="contains" filterBy="#{acct.accountDescription}" headerText="Account Description">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{acct.accountDescription}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{acct.accountDescription}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column style="width:6%" headerText="Edit?">
+						<p:rowEditor />
+					</p:column>
+
+				</p:dataTable>
+
+				<p:panel>
+					<h:commandLink value="Export to Excel">
+						<p:dataExporter target="acctList" type="xls" fileName="ListOfAccounts" />
+					</h:commandLink>
+				</p:panel>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

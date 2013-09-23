@@ -1,0 +1,160 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/MainTemplate.xhtml">
+
+	<ui:define name="body">
+		<h:outputStylesheet library="css" name="order.css" />
+		<h:form id="form1">
+			<h:messages style="color: red" />
+
+			<p:panel header="User Details" styleClass="headerClass">
+				<h:panelGrid columns="4" styleClass="userTableCls">
+					<h:outputLabel value="Order Created By"
+						styleClass="orderlabelClass" />
+					<p:selectOneMenu value="#{order.userString}" immediate="true"
+						id="userDropdown">
+						<f:selectItem itemLabel="Select user" itemValue=""/>
+						<f:selectItems value="#{order.users}" var="userrr" id="userrr"
+							itemLabel="#{userrr.userName}" itemValue="#{userrr.userName}" />
+					</p:selectOneMenu>
+
+					<h:outputLabel value="Creation Date" styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:calendar id="requestDate" value="#{order.newOrder.request_Date}"
+						styleClass="fieldClass" showButtonPanel="true" />
+				</h:panelGrid>
+			</p:panel>
+
+			<p:panel header="Vendor Details" styleClass="headerClass">
+				<p:outputLabel value="Vendor" styleClass="orderlabelClass" />
+				<p:selectOneMenu styleClass="fieldClass"
+					value="#{order.vendorString}">
+					<f:selectItem itemLabel="Select Vendor" itemValue="" />
+					<f:selectItems value="#{order.vendors}" />
+				</p:selectOneMenu>
+			</p:panel>
+
+			<p:panel header="Item Details" styleClass="headerClass">
+				<h:panelGrid columns="6" cellpadding="10">
+					<h:outputLabel value="Item Name" styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:inputText id="itemName" value="#{order.newOrder.item.item_Name}" />
+					<h:outputLabel value="Item Description"
+						styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:inputText id="itemDesc"
+						value="#{order.newOrder.item.item_Description}" />
+					<h:outputLabel value="Catalog #" styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:inputText id="catNo" value="#{order.newOrder.cat_No}"
+						styleClass="fieldClass" />
+					<h:outputLabel value="quantity" styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:inputText id="Quantity" value="#{order.newOrder.quantity}"
+						styleClass="fieldClass" />
+
+					<h:outputLabel value="Size" styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:inputText id="size" value="#{order.newOrder.size}"
+						styleClass="fieldClass" />
+
+					<h:outputLabel value="Cost" styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:inputText id="cost" value="#{order.newOrder.cost}"
+						styleClass="fieldClass" />
+
+					<h:outputLabel value="Line Price" styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:inputText id="lineprice" value="#{order.newOrder.linePrice}"
+						styleClass="fieldClass" />
+
+					<h:outputLabel value="Comments" styleClass="orderlabelClass">
+						<span style="color: red">*</span>
+					</h:outputLabel>
+					<p:inputTextarea id="orderComments"
+						value="#{order.newOrder.comments}" />
+				</h:panelGrid>
+			</p:panel>
+
+
+			<p:panel header="Account Details">
+				<h:messages />
+				<p:panelGrid columns="1">
+					<p:commandLink type="button" onclick="showAcct.show();" id="addNew"
+						value="Add an account" />
+					<p:dataTable value="#{order.grantShare}" id="newAccounts"
+						var="grant">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Account Id" />
+							</f:facet>
+							<h:outputText value="#{grant.account.accountName}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Percent Share" />
+							</f:facet>
+							<h:outputText value="#{grant.percentage}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Comments" />
+							</f:facet>
+							<h:outputText value="#{grant.comments}" />
+						</p:column>
+					</p:dataTable>
+
+
+				</p:panelGrid>
+
+			</p:panel>
+			<p:panel id="buttonArea">
+				<h:commandButton actionListener="#{order.createAnOrderRequest}"
+					value="Create" styleClass="crtBtnCls" />
+				<p:commandButton type="reset" value="Reset" styleClass="rstBtnCls" />
+			</p:panel>
+
+			<p:dialog widgetVar="showAcct" id="acctDial" modal="true"
+				header="New Account" appendToBody="true">
+				<h:messages />
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="Account Name" />
+					<h:selectOneMenu value="#{order.accountString}">
+						<f:selectItems value="#{order.accounts}" var="acct"
+							itemLabel="#{acct.accountName}" itemValue="#{acct.accountName}" />
+					</h:selectOneMenu>
+					<p:outputLabel value="Percentage" />
+					<p:inputText value="#{order.percentString}"
+						validatorMessage="Percentage value must be between 0 and 100"
+						requiredMessage="Please enter percent share">
+						<f:validateRegex pattern="^[0-9]{1,3}$" />
+					</p:inputText>
+					<p:outputLabel value="Comments" />
+					<h:inputText value="#{order.commentString}" />
+					<h:commandButton action="#{order.addAnAccount}" value="Submit"
+						oncomplete="showAcct.hide()" id="SubmitAcct" />
+
+					<h:commandButton type="button" value="Cancel"
+						onclick="showAcct.hide()" />
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+
+
+
+	</ui:define>
+</ui:composition>

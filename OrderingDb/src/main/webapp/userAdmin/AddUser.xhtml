@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/MainTemplate.xhtml">
+	<ui:define name="body">
+	<h:outputStylesheet library="css" name="user.css"/>
+		<h:form prependId="false" id="addUser">
+			<p:panel styleClass="headingCls">			
+				<p:outputLabel value="Create New User" styleClass="headinglbl"/>
+			</p:panel>
+			<h:panelGroup layout="block">
+				<p:messages/>
+			</h:panelGroup>
+			<h:panelGrid columns="2" styleClass="formCls">
+				<p:outputLabel value="User Name" styleClass="labelClass"/>
+				<p:inputText value="#{user.newUser.userName}"/>
+				<p:outputLabel value="Lab" styleClass="labelClass"/>
+				<p:inputText value="#{user.newUser.lab}"/>
+				<p:outputLabel value="Status" styleClass="labelClass"/>
+				<p:inputText value="#{user.newUser.userStatus}"/>
+				<p:outputLabel value="Role" styleClass="labelClass"/>
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Select User Role"/>
+					<f:selectItems value="#{user.userRoles}" var="use" itemLabel="#{use.roleName}" itemValue="#{use.roleId}"/>
+				</p:selectOneMenu>
+			</h:panelGrid>
+			<p:panel>
+				<p:commandButton value="CREATE" styleClass="creatBtnClass" actionListener="#{user.createUser}" update="@form"/>
+				<p:commandButton value="Reset" styleClass="cnlCBtnClass" type="reset"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

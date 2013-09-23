@@ -1,0 +1,68 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/MainTemplate.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false" id="vendorListForm">
+		<h:panelGrid>
+			<p:dataTable value="#{item.listOfItems}" var="it"
+				filteredValue="#{item.filteredItems}"
+				emptyMessage="No Items Found" id="itemList">
+
+				<p:column filterBy="#{it.id.itemId}" filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="Item Id" />
+					</f:facet>
+					<h:outputText value="#{it.id.itemId}" />
+				</p:column>
+				
+				<p:column filterBy="#{it.item.item_Name}" filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="Item Name" />
+					</f:facet>
+					<h:outputText value="#{it.item.item_Name}" />
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{it.vendor.vendor_Name}">
+					<f:facet name="header">
+						<h:outputText value="Vendor Name" />
+					</f:facet>
+					<h:outputText value="#{it.vendor.vendor_Name}" />
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{it.item.item_Description}">
+					<f:facet name="header">
+						<h:outputText value="Item Description" />
+					</f:facet>
+					<h:outputText value="#{it.item.item_Description}" />
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{it.price}">
+					<f:facet name="header">
+						<h:outputText value="Price" />
+					</f:facet>
+					<h:outputText value="#{it.price}" />
+				</p:column>
+
+				<p:column filterMatchMode="contains" filterBy="#{it.id.size}">
+					<f:facet name="header">
+						<h:outputText value="Size" />
+					</f:facet>
+					<h:outputText value="#{it.id.size}" />
+				</p:column>
+
+				
+			</p:dataTable>
+			
+			<p:panel>
+				<h:commandLink value="Export to Excel">
+					<p:dataExporter target="itemList" type="xls" fileName="items" />
+				</h:commandLink>
+			</p:panel>
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,88 @@
+.headerClass div:FIRST-CHILD
+ {
+ 	font: normal small 10px !important;
+ 	background: none !important;
+	font-size: 15px !important;	
+ 	font-weight: bolder !important;
+ 	border: none !important;
+ 	text-decoration: underline;
+ 	
+ }
+ 
+.headerClass
+{
+	padding: 5px;
+	text-align: left;	
+}
+  
+.orderlabelClass 
+{
+	font-family: calibri;
+	font-size: 15px;
+	font-weight: normal;
+}
+ 
+.fieldClass,.fieldClass input
+{
+	height: 30px;
+	width: 150px;
+	font-family: calibri !important;
+	font-size: 15px !important;
+	font-weight: normal !important;
+}
+
+.userTableCls
+{
+	padding: 15px !important;
+}
+.vendorCls
+{
+	height: 30px;
+	width: 100px;
+	font-family: calibri !important;
+	font-size: 12px !important;
+	font-weight: bold !important;
+
+}
+
+.addNew
+{
+	background-image: url("./images/plus.png"); 
+}
+
+#headerLabel
+{
+	margin-left: 40%;
+	font-size: 20px;
+}
+#mainTable
+{
+	width: 100%;
+	font-family: calibri !important;
+}
+#orderButtonPanel
+{
+	padding-left: 30% !important;
+}
+.orderBtnCls
+{
+	width: 180px;
+	height: 50px;
+	margin-right: 20px;
+}
+
+.orderBtnCls > span
+{
+	font-size: 15px;
+	font-family: calibri;
+}
+
+.crtBtnCls
+{
+	margin-left: 30%;
+}
+
+.rstBtnCls
+{
+	margin-left: 3%;
+}
